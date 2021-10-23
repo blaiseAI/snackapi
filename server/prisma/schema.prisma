@@ -78,11 +78,3 @@ model Review {
   stars        Int?
   updatedAt    DateTime  @updatedAt
 }
-
-model Account {
-  cellphone String?
-  createdAt DateTime @default(now())
-  email     String?
-  id        String   @id @default(cuid())
-  updatedAt DateTime @updatedAt
-}

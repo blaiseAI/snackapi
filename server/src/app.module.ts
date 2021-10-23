@@ -5,6 +5,7 @@ import { CustomerModule } from "./customer/customer.module";
 import { AddressModule } from "./address/address.module";
 import { ProductModule } from "./product/product.module";
 import { ReviewModule } from "./review/review.module";
+import { AccountModule } from "./account/account.module";
 import { ACLModule } from "./auth/acl.module";
 import { AuthModule } from "./auth/auth.module";
 import { SecretsManagerModule } from "./providers/secrets/secretsManager.module";
@@ -23,6 +24,7 @@ import { GraphQLModule } from "@nestjs/graphql";
     AddressModule,
     ProductModule,
     ReviewModule,
+    AccountModule,
     ACLModule,
     AuthModule,
     SecretsManagerModule,

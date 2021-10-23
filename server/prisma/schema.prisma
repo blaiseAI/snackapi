@@ -8,7 +8,9 @@ generator client {
 }
 
 model User {
+  cellphone String?
   createdAt DateTime @default(now())
+  email     String?
   firstName String?
   id        String   @id @default(cuid())
   lastName  String?
@@ -75,4 +77,12 @@ model Review {
   id           String    @id @default(cuid())
   stars        Int?
   updatedAt    DateTime  @updatedAt
+}
+
+model Account {
+  cellphone String?
+  createdAt DateTime @default(now())
+  email     String?
+  id        String   @id @default(cuid())
+  updatedAt DateTime @updatedAt
 }

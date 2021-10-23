@@ -29,10 +29,6 @@ import { ReviewList } from "./review/ReviewList";
 import { ReviewCreate } from "./review/ReviewCreate";
 import { ReviewEdit } from "./review/ReviewEdit";
 import { ReviewShow } from "./review/ReviewShow";
-import { AccountList } from "./account/AccountList";
-import { AccountCreate } from "./account/AccountCreate";
-import { AccountEdit } from "./account/AccountEdit";
-import { AccountShow } from "./account/AccountShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -100,13 +96,6 @@ const App = (): React.ReactElement => {
           edit={ReviewEdit}
           create={ReviewCreate}
           show={ReviewShow}
-        />
-        <Resource
-          name="Account"
-          list={AccountList}
-          edit={AccountEdit}
-          create={AccountCreate}
-          show={AccountShow}
         />
       </Admin>
     </div>

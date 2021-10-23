@@ -8,9 +8,7 @@ generator client {
 }
 
 model User {
-  cellphone String?
   createdAt DateTime @default(now())
-  email     String?
   firstName String?
   id        String   @id @default(cuid())
   lastName  String?

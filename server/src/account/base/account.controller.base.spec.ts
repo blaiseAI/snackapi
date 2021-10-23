@@ -5,8 +5,8 @@ import { MorganModule } from "nest-morgan";
 import { ACGuard } from "nest-access-control";
 import { DefaultAuthGuard } from "../../auth/defaultAuth.guard";
 import { ACLModule } from "../../auth/acl.module";
-import { UserController } from "../user.controller";
-import { UserService } from "../user.service";
+import { AccountController } from "../account.controller";
+import { AccountService } from "../account.service";
 
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
@@ -14,51 +14,31 @@ const CREATE_INPUT = {
   cellphone: "exampleCellphone",
   createdAt: new Date(),
   email: "exampleEmail",
-  firstName: "exampleFirstName",
   id: "exampleId",
-  lastName: "exampleLastName",
-  password: "examplePassword",
-  roles: ["exampleRoles"],
   updatedAt: new Date(),
-  username: "exampleUsername",
 };
 const CREATE_RESULT = {
   cellphone: "exampleCellphone",
   createdAt: new Date(),
   email: "exampleEmail",
-  firstName: "exampleFirstName",
   id: "exampleId",
-  lastName: "exampleLastName",
-  password: "examplePassword",
-  roles: ["exampleRoles"],
   updatedAt: new Date(),
-  username: "exampleUsername",
 };
 const FIND_MANY_RESULT = [
   {
     cellphone: "exampleCellphone",
     createdAt: new Date(),
     email: "exampleEmail",
-    firstName: "exampleFirstName",
     id: "exampleId",
-    lastName: "exampleLastName",
-    password: "examplePassword",
-    roles: ["exampleRoles"],
     updatedAt: new Date(),
-    username: "exampleUsername",
   },
 ];
 const FIND_ONE_RESULT = {
   cellphone: "exampleCellphone",
   createdAt: new Date(),
   email: "exampleEmail",
-  firstName: "exampleFirstName",
   id: "exampleId",
-  lastName: "exampleLastName",
-  password: "examplePassword",
-  roles: ["exampleRoles"],
   updatedAt: new Date(),
-  username: "exampleUsername",
 };
 
 const service = {
@@ -93,18 +73,18 @@ const acGuard = {
   },
 };
 
-describe("User", () => {
+describe("Account", () => {
   let app: INestApplication;
 
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
       providers: [
         {
-          provide: UserService,
+          provide: AccountService,
           useValue: service,
         },
       ],
-      controllers: [UserController],
+      controllers: [AccountController],
       imports: [MorganModule.forRoot(), ACLModule],
     })
       .overrideGuard(DefaultAuthGuard)
@@ -117,9 +97,9 @@ describe("User", () => {
     await app.init();
   });
 
-  test("POST /users", async () => {
+  test("POST /accounts", async () => {
     await request(app.getHttpServer())
-      .post("/users")
+      .post("/accounts")
       .send(CREATE_INPUT)
       .expect(HttpStatus.CREATED)
       .expect({
@@ -129,9 +109,9 @@ describe("User", () => {
       });
   });
 
-  test("GET /users", async () => {
+  test("GET /accounts", async () => {
     await request(app.getHttpServer())
-      .get("/users")
+      .get("/accounts")
       .expect(HttpStatus.OK)
       .expect([
         {
@@ -142,9 +122,9 @@ describe("User", () => {
       ]);
   });
 
-  test("GET /users/:id non existing", async () => {
+  test("GET /accounts/:id non existing", async () => {
     await request(app.getHttpServer())
-      .get(`${"/users"}/${nonExistingId}`)
+      .get(`${"/accounts"}/${nonExistingId}`)
       .expect(404)
       .expect({
         statusCode: 404,
@@ -153,9 +133,9 @@ describe("User", () => {
       });
   });
 
-  test("GET /users/:id existing", async () => {
+  test("GET /accounts/:id existing", async () => {
     await request(app.getHttpServer())
-      .get(`${"/users"}/${existingId}`)
+      .get(`${"/accounts"}/${existingId}`)
       .expect(HttpStatus.OK)
       .expect({
         ...FIND_ONE_RESULT,
